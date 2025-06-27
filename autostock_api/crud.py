@@ -19,7 +19,6 @@ def update_car(db: get_session, car_id: int, car_update: schemas.CarCreate):
         for key, value in car_update.dict(exclude_unset=True).items():
             setattr(db_car, key, value)
         db.commit()
-        db.refresh(db_car)
     return db_car
 
 def delete_car(db: get_session, car_id: int):
@@ -27,5 +26,4 @@ def delete_car(db: get_session, car_id: int):
     if db_car:
         db.delete(db_car)
         db.commit()
-        db.refresh(db_car)
     return db_car
