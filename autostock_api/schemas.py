@@ -1,7 +1,9 @@
-from pydantic import BaseModel
 from typing import Optional
 
-class CarBase(BaseModel):
+from pydantic import BaseModel
+
+
+class CarCreate(BaseModel):
     brand: str
     model: str
     color: Optional[str]
@@ -9,11 +11,24 @@ class CarBase(BaseModel):
     model_year: Optional[int]
     description: Optional[str]
 
-class CarCreate(CarBase):
-    pass
 
-class CarRead(CarBase):
+class CarResponse(BaseModel):
     id: int
+    brand: str
+    model: str
+    color: Optional[str]
+    factory_year: Optional[int]
+    model_year: Optional[int]
+    description: Optional[str]
 
     class Config:
         orm_mode = True
+
+
+class CarUpdate(BaseModel):
+    brand: str
+    model: str
+    color: Optional[str]
+    factory_year: Optional[int]
+    model_year: Optional[int]
+    description: Optional[str]
